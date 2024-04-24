@@ -1,1 +1,5 @@
 env/
+
+
+hospital/migrations/*
+!hospital/migrations/__init__.py

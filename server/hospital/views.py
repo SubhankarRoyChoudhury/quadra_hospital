@@ -55,14 +55,6 @@ def index(HttpRequest):  # new
 #         return JsonResponse("Data Deleted Successfully", safe=False)
 
 
-@api_view(['GET'])
-@csrf_exempt
-def usersApiGet(request):
-    users = Users.objects.all()
-    users_serializer = UsersSerializer(users, many=True)
-    return Response(users_serializer.data)
-
-
 @api_view(['POST'])
 @csrf_exempt
 def usersApiPost(request):
@@ -74,9 +66,29 @@ def usersApiPost(request):
     return JsonResponse("Data Not Added Successfully", safe=False, status=400)
 
 
+@api_view(['GET'])
+@csrf_exempt
+def usersApiGet(request):
+    users = Users.objects.all()
+    users_serializer = UsersSerializer(users, many=True)
+    return Response(users_serializer.data)
+
+
+@api_view(['GET'])
+@csrf_exempt
+def findUserById(request, id):
+    try:
+        users = Users.objects.get(id=id)
+        users_serializer = UsersSerializer(users,  many=False)
+        return Response(users_serializer.data)
+    except Users.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
+
+
 @api_view(['PUT'])
 @csrf_exempt
 def usersApiPut(request, id):
+    print(id)
     try:
         users = Users.objects.get(id=id)
     except Users.DoesNotExist:
