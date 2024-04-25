@@ -1,3 +1,4 @@
+import json
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
@@ -94,11 +95,19 @@ def usersApiPut(request, id):
     except Users.DoesNotExist:
         return JsonResponse(status=404)
 
-    users_serializer = UsersSerializer(users, data=request.data)
+    print('user => ', users)
+
+    data = json.loads(request.data['data'])
+    # data = request.data
+
+    users_serializer = UsersSerializer(users, data=data)
+    print(users_serializer)
     if users_serializer.is_valid():
         users_serializer.save()
         return JsonResponse("Update Data SuccessFully", safe=False, status=201)
-    return JsonResponse("Data Update Not SuccessFully", safe=False, status=400)
+    # else:
+
+    return JsonResponse("Data Update Not SuccessFully", safe=False, status=500)
 
 
 @api_view(['DELETE'])

@@ -66,12 +66,41 @@
         </div>
       </div>
       <label for="body">Gender : </label>
-      <input
+      <!-- <input
         type="text"
         id="body"
         formControlName="gender"
         class="form-control"
-      />
+      /> -->
+
+      <label>
+        <input
+          type="radio"
+          formControlName="gender"
+          [value]="'Male'"
+          class="form-check-input"
+        />
+        Male
+      </label>
+      <label>
+        <input
+          type="radio"
+          formControlName="gender"
+          [value]="'Female'"
+          class="form-check-input"
+        />
+        Female
+      </label>
+      <label>
+        <input
+          type="radio"
+          formControlName="gender"
+          [value]="'Other'"
+          class="form-check-input"
+        />
+        Other
+      </label>
+
       <div
         *ngIf="f['gender'].touched && f['gender'].invalid"
         class="alert alert-danger"

@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['postId'];
+    this.id = parseInt(this.route.snapshot.params['postId']);
 
     this.postService.findUserById(this.id).subscribe((data: Post) => {
       this.post = data;

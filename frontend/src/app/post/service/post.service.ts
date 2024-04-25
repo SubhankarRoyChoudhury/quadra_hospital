@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../post';
@@ -41,9 +41,11 @@ export class PostService {
   }
 
   update(id: number, post: Post): Observable<any> {
+    const payload = new HttpParams().set('data', JSON.stringify(post));
+
     return this.httpClient.put(
       this.apiURL + '/updateUsers/' + id + '/update/',
-      JSON.stringify(post),
+      payload,
       {
         headers: this.http_headers_urlencoded,
       }
