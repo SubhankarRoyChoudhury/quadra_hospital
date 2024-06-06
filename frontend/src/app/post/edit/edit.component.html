@@ -4,14 +4,19 @@
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
-      <label for="title">Name : </label>
+      <!-- <label for="title">Name : </label>
       <input
         type="text"
         id="title"
         [(ngModel)]="post.name"
         formControlName="name"
         class="form-control"
-      />
+      /> -->
+
+      <mat-form-field class="w-100">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" required />
+      </mat-form-field>
       <div
         *ngIf="f['name'].touched && f['name'].invalid"
         class="alert alert-danger"
@@ -21,14 +26,19 @@
         </div>
       </div>
 
-      <label for="body">Email : </label>
+      <!-- <label for="body">Email : </label>
       <input
         type="text"
         id="body"
         formControlName="email"
         [(ngModel)]="post.email"
         class="form-control"
-      />
+      /> -->
+
+      <mat-form-field class="w-100">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" required />
+      </mat-form-field>
       <div
         *ngIf="f['email'].touched && f['email'].invalid"
         class="alert alert-danger"
@@ -37,14 +47,19 @@
           Email is Required.
         </div>
       </div>
-      <label for="body">Phone : </label>
+      <!-- <label for="body">Phone : </label>
       <input
         type="text"
         id="body"
         formControlName="phone"
         [(ngModel)]="post.phone"
         class="form-control"
-      />
+      /> -->
+
+      <mat-form-field class="w-100">
+        <mat-label>Phone No.</mat-label>
+        <input type="number" matInput formControlName="phone" required />
+      </mat-form-field>
       <div
         *ngIf="f['phone'].touched && f['phone'].invalid"
         class="alert alert-danger"
@@ -53,14 +68,19 @@
           Phone is Required.
         </div>
       </div>
-      <label for="body">Address : </label>
+      <!-- <label for="body">Address : </label>
       <input
         type="text"
         id="body"
         formControlName="address"
         [(ngModel)]="post.address"
         class="form-control"
-      />
+      /> -->
+
+      <mat-form-field class="w-100">
+        <mat-label>Address</mat-label>
+        <input type="text" matInput formControlName="address" required />
+      </mat-form-field>
       <div
         *ngIf="f['address'].touched && f['address'].invalid"
         class="alert alert-danger"
@@ -69,14 +89,49 @@
           Address is Required.
         </div>
       </div>
-      <label for="body">Gender : </label>
+      <!-- <label for="body">Gender : </label>
       <input
         type="text"
         id="body"
         formControlName="gender"
         [(ngModel)]="post.gender"
         class="form-control"
-      />
+      /> -->
+
+      <!-- <label>
+        <input
+          type="radio"
+          formControlName="gender"
+          [value]="'Male'"
+          class="form-check-input"
+        />
+        Male
+      </label>
+      <label>
+        <input
+          type="radio"
+          formControlName="gender"
+          [value]="'Female'"
+          class="form-check-input"
+        />
+        Female
+      </label>
+      <label>
+        <input
+          type="radio"
+          formControlName="gender"
+          [value]="'Other'"
+          class="form-check-input"
+        />
+        Other
+      </label> -->
+
+      <mat-radio-group aria-label="Select an option" formControlName="gender">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+        <mat-radio-button value="Other">Other</mat-radio-button>
+      </mat-radio-group>
+
       <div
         *ngIf="f['gender'].touched && f['gender'].invalid"
         class="alert alert-danger"
