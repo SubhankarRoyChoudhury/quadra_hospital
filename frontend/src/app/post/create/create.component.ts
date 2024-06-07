@@ -11,11 +11,18 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { CapitalizefirstDirective } from '../capitalizefirst.directive';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatRadioModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatRadioModule,
+    CapitalizefirstDirective,
+  ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss',
 })

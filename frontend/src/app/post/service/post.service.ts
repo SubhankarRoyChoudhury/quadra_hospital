@@ -30,6 +30,7 @@ export class PostService {
       headers: this.http_headers_urlencoded,
     });
   }
+
   create(post: Post): Observable<any> {
     return this.httpClient.post(
       this.apiURL + '/users/create/',
@@ -40,12 +41,23 @@ export class PostService {
     );
   }
 
-  update(id: number, post: Post): Observable<any> {
-    const payload = new HttpParams().set('data', JSON.stringify(post));
+  // update(id: number, post: Post): Observable<any> {
+  //   const payload = new HttpParams().set('data', JSON.stringify(post));
 
+  //   return this.httpClient.put(
+  //     this.apiURL + '/updateUsers/' + id + '/update/',
+  //     payload,
+  //     {
+  //       headers: this.http_headers_urlencoded,
+  //     }
+  //   );
+  // }
+
+  update(id: number, post: Post): Observable<any> {
     return this.httpClient.put(
-      this.apiURL + '/updateUsers/' + id + '/update/',
-      payload,
+      `${this.apiURL}/updateUsers/${id}/update/`,
+      // this.apiURL + '/updateUsers/' + id + '/update/',
+      JSON.stringify(post),
       {
         headers: this.http_headers_urlencoded,
       }

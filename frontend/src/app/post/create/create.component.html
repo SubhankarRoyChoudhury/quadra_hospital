@@ -1,12 +1,12 @@
 <div class="container">
-  <h1 class="text-center">Update Post Here</h1>
+  <h1 class="text-center mt-5">Update Post Here</h1>
   <a href="#" routerLink="/post/index" class="btn btn-primary mb-3">Back</a>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
       <mat-form-field class="w-100">
         <mat-label>Name</mat-label>
-        <input matInput formControlName="name" />
+        <input matInput formControlName="name" appCapitalizefirst />
       </mat-form-field>
 
       <!-- <label for="title">Name : </label>
@@ -77,7 +77,13 @@
 
       <mat-form-field class="w-100">
         <mat-label>Address</mat-label>
-        <input type="text" matInput formControlName="address" required />
+        <input
+          type="text"
+          matInput
+          formControlName="address"
+          appCapitalizefirst
+          required
+        />
       </mat-form-field>
       <div
         *ngIf="f['address'].touched && f['address'].invalid"
