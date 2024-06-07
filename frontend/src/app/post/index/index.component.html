@@ -1,30 +1,30 @@
 <div class="container">
-  <h1 class="text-center">Angular 17 Crud Application Using API</h1>
+  <h1 class="text-center mt-5">Angular 17 Crud Application Using API</h1>
   <a href="#" routerLink="/post/create" class="btn btn-success">Create Post</a>
 
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>Gender</th>
-        <th width="250px">Action</th>
+        <th style="text-align: center">Id</th>
+        <th style="text-align: center">Name</th>
+        <th style="text-align: center">Email</th>
+        <th style="text-align: center">Phone</th>
+        <th style="text-align: center">Address</th>
+        <th style="text-align: center">Gender</th>
+        <th style="text-align: center" width="250px">Action</th>
       </tr>
     </thead>
     <tbody>
       @for (post of posts; track post) {
       <tr>
-        <td>{{ post.id }}</td>
-        <td>{{ post.name }}</td>
-        <td>{{ post.email }}</td>
-        <td>{{ post.phone }}</td>
-        <td>{{ post.address }}</td>
-        <td>{{ post.gender }}</td>
-        <td>
-          <a href="#" class="btn btn-info me-2">View</a>
+        <td style="text-align: center">{{ post.id }}</td>
+        <td style="text-align: center">{{ post.name }}</td>
+        <td style="text-align: center">{{ post.email }}</td>
+        <td style="text-align: center">{{ post.phone }}</td>
+        <td style="text-align: center">{{ post.address }}</td>
+        <td style="text-align: center">{{ post.gender }}</td>
+        <td style="text-align: center">
+          <!-- <a href="#" class="btn btn-info me-2">View</a> -->
           <!-- [routerLink]="['/post/', post.id, 'view']" -->
           <a
             href="#"

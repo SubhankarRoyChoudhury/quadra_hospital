@@ -1,3 +1,4 @@
+import json
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
@@ -87,18 +88,35 @@ def findUserById(request, id):
 
 @api_view(['PUT'])
 @csrf_exempt
+# def usersApiPut(request, id):
+#     print(id)
+#     try:
+#         users = Users.objects.get(id=id)
+#     except Users.DoesNotExist:
+#         return JsonResponse(status=404)
+#     print('user => ', users)
+#     data = json.loads(request.data['data'])
+#     # data = request.data
+#     users_serializer = UsersSerializer(users, data=data)
+#     print(users_serializer)
+#     if users_serializer.is_valid():
+#         users_serializer.save()
+#         return JsonResponse("Update Data SuccessFully", safe=False, status=201)
+#     # else:
+#     return JsonResponse("Data Update Not SuccessFully", safe=False, status=500)
 def usersApiPut(request, id):
-    print(id)
     try:
-        users = Users.objects.get(id=id)
+        user = Users.objects.get(id=id)
     except Users.DoesNotExist:
-        return JsonResponse(status=404)
+        return JsonResponse("User Not Found", safe=False, status=404)
 
-    users_serializer = UsersSerializer(users, data=request.data)
+    user_data = JSONParser().parse(request)
+    users_serializer = UsersSerializer(user, data=user_data)
+
     if users_serializer.is_valid():
         users_serializer.save()
-        return JsonResponse("Update Data SuccessFully", safe=False, status=201)
-    return JsonResponse("Data Update Not SuccessFully", safe=False, status=400)
+        return JsonResponse("Data Updated Successfully", safe=False, status=200)
+    return JsonResponse("Data Not Updated Successfully", safe=False, status=400)
 
 
 @api_view(['DELETE'])
