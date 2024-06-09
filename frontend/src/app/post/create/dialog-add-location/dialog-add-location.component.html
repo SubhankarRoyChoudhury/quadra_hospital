@@ -1,0 +1,46 @@
+<div
+  class="d-flex align-items-center"
+  style="height: 50px; background-color: blanchedalmond"
+>
+  <div class="p-2 w-100">{{ this.data.title }}</div>
+  <div class="p-2 flex-shrink-1">
+    <!-- <button
+      mat-icon-button
+
+      aria-label="Example icon button with a vertical three dot icon"
+    > -->
+    <mat-icon mat-dialog-close>close</mat-icon>
+    <!-- </button> -->
+  </div>
+</div>
+<div class="p-4">
+  <form [formGroup]="newAddLocationForm" (ngSubmit)="addLocation()">
+    <div class="row m-0">
+      <div class="col-12 p-0">
+        <mat-form-field class="w-100">
+          <mat-label>Location</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            formControlName="location_name"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            @for (option of filteredLocation | async; track option) {
+            <mat-option [value]="option.location_name">{{
+              option.location_name
+            }}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="col-12 mt-4 d-grid align-items-center justify-content-end">
+        <button mat-raised-button color="primary">
+          {{ this.data.btn_title }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

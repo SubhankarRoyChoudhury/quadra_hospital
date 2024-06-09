@@ -1,6 +1,17 @@
 <div class="container">
   <h1 class="text-center mt-5">Angular 17 Crud Application Using API</h1>
-  <a href="#" routerLink="/post/create" class="btn btn-success">Create Post</a>
+  <!-- <a href="#" routerLink="/post/create" class="btn btn-success">Create Post</a> -->
+
+  <button
+    mat-raised-button
+    class="m-2"
+    routerLink="/post/create"
+    color="primary"
+  >
+    Create Post
+  </button>
+
+  <button mat-raised-button class="m-2" color="primary">Add Location</button>
 
   <table class="table table-striped">
     <thead>
@@ -10,6 +21,7 @@
         <th style="text-align: center">Email</th>
         <th style="text-align: center">Phone</th>
         <th style="text-align: center">Address</th>
+        <th style="text-align: center">Location</th>
         <th style="text-align: center">Gender</th>
         <th style="text-align: center" width="250px">Action</th>
       </tr>
@@ -22,6 +34,7 @@
         <td style="text-align: center">{{ post.email }}</td>
         <td style="text-align: center">{{ post.phone }}</td>
         <td style="text-align: center">{{ post.address }}</td>
+        <td style="text-align: center">{{ post.location }}</td>
         <td style="text-align: center">{{ post.gender }}</td>
         <td style="text-align: center">
           <!-- <a href="#" class="btn btn-info me-2">View</a> -->
