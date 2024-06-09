@@ -3,10 +3,10 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework.decorators import api_view
-from .serializer import UsersSerializer
+from .serializer import UsersSerializer, LocationSerializer
 from rest_framework.response import Response
 
-from .models import Users
+from .models import Users, Location
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 # from models import *
@@ -56,6 +56,7 @@ def index(HttpRequest):  # new
 #         return JsonResponse("Data Deleted Successfully", safe=False)
 
 
+# ----------------------------------------- User Created Views Start --------------------------------------
 @api_view(['POST'])
 @csrf_exempt
 def usersApiPost(request):
@@ -128,3 +129,26 @@ def usersApiDelete(request, id):
         return JsonResponse("Data Not Deleted Successfully", safe=False, status=404)
     users.delete()
     return JsonResponse("Data Deleted Successfully", safe=False, status=204)
+
+
+# ----------------------------------------- User Created Views End --------------------------------------
+
+
+# ----------------------------------------- User Created Views Start --------------------------------------
+@api_view(['POST'])
+@csrf_exempt
+def locationApiPost(request):
+    location_data = JSONParser().parse(request)
+    location_serializer = LocationSerializer(data=location_data)
+    if location_serializer.is_valid():
+        location_serializer.save()
+        return JsonResponse("Data Added Successfully", safe=False, status=201)
+    return JsonResponse("Data Not Added Successfully", safe=False, status=400)
+
+
+@api_view(['GET'])
+@csrf_exempt
+def locationsApiGet(request):
+    location = Location.objects.all()
+    location_serializer = LocationSerializer(location, many=True)
+    return Response(location_serializer.data)

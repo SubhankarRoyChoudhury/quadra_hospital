@@ -3,11 +3,12 @@ import { PostService } from '../service/post.service';
 import { Post } from '../post';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MatButtonModule],
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
 })

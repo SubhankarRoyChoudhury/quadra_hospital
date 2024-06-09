@@ -8,9 +8,13 @@ urlpatterns = [
     # path('users/', views.usersApi,),
     # path('users/<int:id>', views.usersApi,),
 
-    path('users/', views.usersApiGet),
+    path('', views.usersApiGet),
     path('users/<int:id>', views.findUserById),
     path('users/create/', views.usersApiPost),
     path('updateUsers/<int:id>/update/', views.usersApiPut),
     path('users/<int:id>/delete/', views.usersApiDelete),
+
+    path('location/', views.locationsApiGet),
+
+    path('location/create/', views.locationApiPost),
 ]

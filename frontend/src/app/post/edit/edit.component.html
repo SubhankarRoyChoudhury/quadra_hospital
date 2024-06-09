@@ -15,7 +15,13 @@
 
       <mat-form-field class="w-100">
         <mat-label>Name</mat-label>
-        <input type="text" matInput formControlName="name" required />
+        <input
+          type="text"
+          matInput
+          formControlName="name"
+          required
+          appCapitalizefirst
+        />
       </mat-form-field>
       <div
         *ngIf="f['name'].touched && f['name'].invalid"
@@ -79,7 +85,13 @@
 
       <mat-form-field class="w-100">
         <mat-label>Address</mat-label>
-        <input type="text" matInput formControlName="address" required />
+        <input
+          type="text"
+          matInput
+          formControlName="address"
+          appCapitalizefirst
+          required
+        />
       </mat-form-field>
       <div
         *ngIf="f['address'].touched && f['address'].invalid"
@@ -89,6 +101,25 @@
           Address is Required.
         </div>
       </div>
+
+      <mat-form-field class="w-100">
+        <mat-label>Location</mat-label>
+        <input
+          type="text"
+          placeholder="Pick one"
+          aria-label="Number"
+          matInput
+          formControlName="location"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          @for (option of filteredLocation | async; track option) {
+          <mat-option [value]="option.location_name">{{
+            option.location_name
+          }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
       <!-- <label for="body">Gender : </label>
       <input
         type="text"

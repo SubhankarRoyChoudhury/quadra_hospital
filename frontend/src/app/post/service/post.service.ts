@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post } from '../post';
+import { LocationPost, Post } from '../post';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class PostService {
   constructor(private httpClient: HttpClient) {}
 
   getAll(): Observable<any> {
-    return this.httpClient.get(this.apiURL + '/users/', {
+    return this.httpClient.get(this.apiURL + '', {
       headers: this.http_headers_urlencoded,
     });
   }
@@ -68,5 +68,21 @@ export class PostService {
     return this.httpClient.delete(this.apiURL + '/users/' + id + '/delete/', {
       headers: this.http_headers_urlencoded,
     });
+  }
+
+  getAllLocation(): Observable<any> {
+    return this.httpClient.get(this.apiURL + '/location/', {
+      headers: this.http_headers_urlencoded,
+    });
+  }
+
+  locationCreate(locationpost: LocationPost): Observable<any> {
+    return this.httpClient.post(
+      this.apiURL + '/location/create/',
+      JSON.stringify(locationpost),
+      {
+        headers: this.http_headers_urlencoded,
+      }
+    );
   }
 }
